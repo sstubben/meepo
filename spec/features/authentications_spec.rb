@@ -1,13 +1,8 @@
 require 'rails_helper'
 
-RSpec.feature "Authorizations:", type: :feature do
+RSpec.feature "Authentications:", type: :feature do
   before(:each) do
     FactoryGirl.create_list(:team,3)
-    puts "Created teams. Number of teams created: #{Team.count}"
-    puts "Putting team names:"
-    Team.all.each do |team|
-      puts team.name
-    end
   end
 
   describe "user registers" do
@@ -19,14 +14,12 @@ RSpec.feature "Authorizations:", type: :feature do
         fill_in "user_password", with: "test1234"
         fill_in "user_password_confirmation", with: "test1234"
         option = page.find(:xpath, "//*[@id='user_team_id']/option[2]").text
-        puts option
-        #select(option,'user_team_id')
-        click_button 'Sign up'
-        #save_and_open_screenshot
-        #expect(subject.current_user).to_not eq(nil)
-        expect(User.count).to change(User,:count).by(1)
-
-
+        page.select(option,from:'user_team_id')
+        expect{
+          click_button 'Sign up'
+        }.to change{
+          User.count
+        }.by(1)
       end
 
 
