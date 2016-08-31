@@ -36,8 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 
-gem 'factory_girl_rails'
-gem 'faker'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +44,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'rails-controller-testing'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'launchy'
   gem 'poltergeist'
   gem 'database_cleaner'
